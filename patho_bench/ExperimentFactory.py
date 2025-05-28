@@ -65,16 +65,6 @@ class ExperimentFactory:
         print(f"patch_embeddings_dirs: {patch_embeddings_dirs}")
         print(f"pooled_embeddings_dirs: {pooled_embeddings_dir}")
         print("#" * 80)
-        _, task_info, internal_dataset = ExperimentFactory._prepare_internal_dataset(split,
-                                                                                    task_config,
-                                                                                    saveto,
-                                                                                    combine_slides_per_patient,
-                                                                                    COMBINE_TRAIN_VAL,
-                                                                                    patch_embeddings_dirs,
-                                                                                    pooled_embeddings_dir,
-                                                                                    model_name,
-                                                                                    model_kwargs,
-                                                                                    gpu)
         _, task_info, internal_dataset = ExperimentFactory._prepare_internal_dataset(split_path=split,
                                                                                     task_config=task_config,
                                                                                     saveto=saveto,
