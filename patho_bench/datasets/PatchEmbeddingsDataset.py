@@ -58,6 +58,12 @@ class PatchEmbeddingsDataset(BaseDataset):
                     slide_id = os.path.splitext(file)[0]
                     print(slide_id)
                     self.available_slide_paths[slide_id] = os.path.join(path, file)
+
+        print("#" * 80)
+        print(f"self.split: {self.split}")
+        print(f"self.data: {self.data}")
+        print(f"self.split.data: {self.split.data}")
+        print("#" * 80)
                     
     def _apply_preprocessor(self, assets):
         '''
