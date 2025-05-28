@@ -75,6 +75,16 @@ class ExperimentFactory:
                                                                                     model_name,
                                                                                     model_kwargs,
                                                                                     gpu)
+        _, task_info, internal_dataset = ExperimentFactory._prepare_internal_dataset(split_path=split,
+                                                                                    task_config=task_config,
+                                                                                    saveto=saveto,
+                                                                                    combine_slides_per_patient=combine_slides_per_patient,
+                                                                                    combine_train_val=COMBINE_TRAIN_VAL,
+                                                                                    patch_embeddings_dirs=patch_embeddings_dirs,
+                                                                                    pooled_embeddings_dir=pooled_embeddings_dir,
+                                                                                    model_name=model_name,
+                                                                                    model_kwargs=model_kwargs,
+                                                                                    gpu=gpu)
         
         # Initialize experiment
         experiment = LinearProbeExperiment(
