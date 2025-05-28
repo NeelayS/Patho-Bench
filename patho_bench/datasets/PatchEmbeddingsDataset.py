@@ -42,14 +42,21 @@ class PatchEmbeddingsDataset(BaseDataset):
         if isinstance(self.load_from, str):
             self.load_from = [self.load_from]
 
+        print("#" * 80)
+        print("Available slide paths computation")
+        print(f"self.load_from {self.load_from}")
         self.available_slide_paths = {}
         for path in self.load_from:
             if not os.path.exists(path):
+                print("Entered if condition")
                 print(f"WARNING: Dataset source path {path} does not exist. Skipping.")
                 continue
+            print(f"Entered else condition with path {path}")
             for file in os.listdir(path):
+                print(f"File {file} in for loop iteration")
                 if file.endswith('.h5'):
                     slide_id = os.path.splitext(file)[0]
+                    print(slide_id)
                     self.available_slide_paths[slide_id] = os.path.join(path, file)
                     
     def _apply_preprocessor(self, assets):
