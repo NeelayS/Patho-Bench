@@ -23,10 +23,15 @@ class SplitFactory:
         assert os.path.exists(path_to_config), f"Path to split config {path_to_config} does not exist locally."
         
         task_info = SplitFactory.get_task_info(path_to_config=path_to_config)
+        print("#" * 80)
+        print(f"id_col = {task_info['sample_col']},")
+        print(f"attr_cols = {task_info['extra_cols'] + ['slide_id']}")
+        print(f"label_cols = {[task_info['task_col']]}")
         split = DataSplit(path = path_to_split,
                         id_col = task_info['sample_col'],
                         attr_cols = task_info['extra_cols'] + ['slide_id'],
                         label_cols = [task_info['task_col']])
+        print("#" * 80)
         return split, task_info
     
     @staticmethod

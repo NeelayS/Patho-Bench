@@ -47,6 +47,9 @@ class DataSplit(ConfigMixin):
         # Load split
         assert os.path.exists(self.path), f'{self.path} does not exist.'
         self.data = pd.read_csv(self.path, sep='\t' if self.path.endswith('.tsv') else ',', dtype={'case_id': str, 'slide_id': str, 'id': str})
+        print("#" * 80)
+        print(f"self.data: {self.data}")
+        print("#" * 80)
         self.data = self.convert_to_json(self.data)  # Convert to a list of dicts for easier data access
         self.num_folds = len(self.data[0]['folds']) if 'folds' in self.data[0] else 0
 
