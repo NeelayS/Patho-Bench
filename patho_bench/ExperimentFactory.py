@@ -61,6 +61,10 @@ class ExperimentFactory:
             model_kwargs: dict, additional arguments to pass to the model constructor. Only needed if pooled_embeddings_dir is empty.
             num_bootstraps: int, number of bootstraps. Default is 100.
         '''
+        print("#" * 80)
+        print(f"patch_embeddings_dirs: {patch_embeddings_dirs}")
+        print(f"pooled_embeddings_dirs: {pooled_embeddings_dir}")
+        print("#" * 80)
         _, task_info, internal_dataset = ExperimentFactory._prepare_internal_dataset(split,
                                                                                     task_config,
                                                                                     saveto,
