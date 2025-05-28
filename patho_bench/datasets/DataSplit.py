@@ -48,7 +48,7 @@ class DataSplit(ConfigMixin):
         assert os.path.exists(self.path), f'{self.path} does not exist.'
         self.data = pd.read_csv(self.path, sep='\t' if self.path.endswith('.tsv') else ',', dtype={'case_id': str, 'slide_id': str, 'id': str})
         print("#" * 80)
-        print(f"self.data: {self.data}")
+        print(f"self.data:\n{self.data}")
         print("#" * 80)
         self.data = self.convert_to_json(self.data)  # Convert to a list of dicts for easier data access
         self.num_folds = len(self.data[0]['folds']) if 'folds' in self.data[0] else 0
@@ -68,6 +68,11 @@ class DataSplit(ConfigMixin):
         if 'Unnamed: 0' in df.columns:
             df.drop(columns=['Unnamed: 0'], inplace=True)
             
+        print("#" * 80)
+        print("Available columns:", df.columns.tolist())
+        print("Looking for columns:", self.label_cols)
+        print("#" * 80)
+
         # Drop any rows with invalid labels
         df = df.dropna(subset=self.label_cols)
         if self.skip_labels:
