@@ -76,6 +76,9 @@ class LinearProbeExperiment(ClassificationMixin, BaseExperiment):
                 random_state=0,
                 class_weight="balanced" if self.balanced_class_weights else None
             )
+            print("#" * 80)
+            print(f"all_train_samples['labels'][self.task_name]:\n{all_train_samples['labels'][self.task_name]}")
+            print("#" * 80)
             model.fit(all_train_samples['slide']['features'], all_train_samples['labels'][self.task_name])
             self.models[self.current_iter] = model
             
