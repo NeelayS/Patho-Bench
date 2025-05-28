@@ -63,6 +63,7 @@ class PatchEmbeddingsDataset(BaseDataset):
         print(f"self.split: {self.split}")
         print(f"self.data: {self.data}")
         print(f"self.split.data: {self.split.data}")
+        print(f"self.available_slide_paths: {self.available_slide_paths}")
         print("#" * 80)
                     
     def _apply_preprocessor(self, assets):
