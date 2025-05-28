@@ -497,6 +497,10 @@ class ExperimentFactory:
         
         # Load dataset
         if pooled_embeddings_dir is not None:
+            print("#" * 80)
+            print(f"patch_embeddings_dirs: {patch_embeddings_dirs}")
+            print(f"pooled_embeddings_dirs: {pooled_embeddings_dir}")
+            print("#" * 80)
             dataset = DatasetFactory.from_slide_embeddings(
                 split=split,
                 task_name=task_info['task_col'],

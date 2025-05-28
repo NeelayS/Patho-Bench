@@ -33,6 +33,9 @@ class DatasetFactory:
         '''
         Creates a dataset that returns slide-level embeddings and labels.
         '''
+        print("#" * 80)
+        print(kwargs)
+        print("#" * 80)
         return CombinedDataset({
             'slide': DatasetFactory._slide_embeddings_dataset(**kwargs),
             'labels': DatasetFactory._labels_dataset(kwargs['split'], kwargs['task_name'])
@@ -64,6 +67,10 @@ class DatasetFactory:
         if patch_embeddings_dirs:
             # If patch_embeddings_dirs is provided, will prepare pooled features from patch features (this will skip over slides that have already been pooled)
             print('\033[94m' + f'Pooling features to {pooled_embeddings_dir}, using {model_name}...' + '\033[0m')
+            print("#" * 80)
+            print(f"patch_embeddings_dirs: {patch_embeddings_dirs}")
+            print(f"pooled_embeddings_dirs: {pooled_embeddings_dir}")
+            print("#" * 80)
             pooler = Pooler(patch_embeddings_dataset = DatasetFactory._patch_embeddings_dataset(split, patch_embeddings_dirs, combine_slides_per_patient, bag_size = None),
                                     model_name = model_name,
                                     model_kwargs = model_kwargs,
@@ -88,7 +95,11 @@ class DatasetFactory:
         '''
         if isinstance(patch_embeddings_dirs, str):
             patch_embeddings_dirs = [patch_embeddings_dirs]
-            
+
+        print("#" * 80)
+        print(f"patch_embeddings_dirs: {patch_embeddings_dirs}")
+        print("#" * 80)
+
         return PatchEmbeddingsDataset(split,
                                       load_from = list(set(patch_embeddings_dirs)),
                                     #   preprocessor= {'features': lambda x: rearrange(x, "1 p f -> p f"),
